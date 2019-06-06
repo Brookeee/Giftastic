@@ -20,7 +20,7 @@ function createBtns() {
         var newEra = $("#era-input").val().trim();
         topics.push(newEra);
         createBtns();
-    // function to display gifs **not working, http not working**
+    // function to display gifs **not working?? change to http, check API key*
     function showGifs() {
         
         var second = $(this).attr("data-name");
