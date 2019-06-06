@@ -20,8 +20,7 @@ function createBtns() {
         var newEra = $("#era-input").val().trim();
         topics.push(newEra);
         createBtns();
-    });
-    // function to display gifs 
+    // function to display gifs **not working, http not working**
     function showGifs() {
         
         var second = $(this).attr("data-name");
@@ -32,20 +31,18 @@ function createBtns() {
             url: queryURL,
             method: "GET"
         })
-        .done (function (response){
+        .then (function (response){
             console.log(response.data);
 
-            // animate/still 
-            $("#buttons-view").on("click", ".btn-primary", function() {
             var results = response.data;
             for (var i = 0; i < results.length; i++) {
                 var newDiv = $('<div>');
                 var goGif = $("<img class = 'gif' data-state = 'animate'>");
                 goGif.attr('src', results[i].images.fixed_width_url);
                 goGif.attr("data-animate", results[i].images.fixed_width.url);
-                goGif.attr("data-still", results[i].images.fixed_still.url);
+                
 
-                // rating 
+                // rating p tag 
                 var gifRating = $("<p>")
 
                 gifRating.text("Rated: PG-13 " + results[i].gifRating);
@@ -56,12 +53,21 @@ function createBtns() {
                 $("#90s").prepend(newDiv);
                 console.log(response);
             }
-        })
-        
+
+            // function changeImg(){
+            //     var imageStill = $(this).attr("data-still");
+            //     var animateImg = $(this).attr("data-animate");
+            //     var imgState = $(this).attr("data-state");
+
+            //     if (state == "still"){
+
+            //     }
+            // }
         
         });
     }
 
     // call to function to show gifts 
     showGifs();
+});
 });
