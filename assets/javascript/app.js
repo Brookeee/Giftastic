@@ -14,7 +14,7 @@ function createBtns() {
     }
 }
     createBtns();
-
+// to add new button via input field
     $("#add-era").on("click", function(){
 
         var newEra = $("#era-input").val().trim();
@@ -36,8 +36,8 @@ function createBtns() {
 
             var results = response.data;
             for (var i = 0; i < results.length; i++) {
-                var newDiv = $('<div>');
-                var goGif = $("<img class = 'gif' data-state = 'animate'>");
+                var newDiv = $("<div>");
+                var goGif = $("<img>");
                 goGif.attr('src', results[i].images.fixed_width_url);
                 goGif.attr("data-animate", results[i].images.fixed_width.url);
                 
@@ -53,7 +53,7 @@ function createBtns() {
                 $("#90s").prepend(newDiv);
                 console.log(response);
             }
-
+            // Function to change gif image state still/animate
             // function changeImg(){
             //     var imageStill = $(this).attr("data-still");
             //     var animateImg = $(this).attr("data-animate");
@@ -67,7 +67,7 @@ function createBtns() {
         });
     }
 
-    // call to function to show gifts 
+    // call to function to show gifs
     showGifs();
 });
 });
