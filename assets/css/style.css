@@ -1,14 +1,17 @@
 #jumbotron {
-    background-color: rgb(114, 207, 118);
+    /* background-color: rgb(114, 207, 118); */
     padding: 15px;
 }
 .display-4 {
     font-weight: bold;
     color: black;
-    background-color: rgb(114, 207, 118);
+    /* background-color: rgb(114, 207, 118); */
     text-align: center;
 }
 #buttons {
     padding: 10px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+ }
+ body {
+     background-image: url("../assets/css/images/musicplayer.jpg");
  }

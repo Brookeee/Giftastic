@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var topics = ["The Nanny", "Clueless", "Rugrats"];
+    var topics = ["Nipsey Hussle", "Beyonce", "Drake"];
 
 // Giphy subject buttons. **FIXED**
 function createBtns() {

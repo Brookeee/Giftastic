@@ -1,34 +1,38 @@
 <!DOCTYPE html>
+
 <head>
     <title> Giftastic</title>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </head>
+
 <body>
     <!-- Jumbotron-->
-    <div class = "container">
+    <div class="container">
         <div id="jumbotron">
             <div class="container">
-            <h1 class="display-4">90's Gif, Gifs, Giftastic!</h1>
+                <h1 class="display-4">Music on the mind!</h1>
+            </div>
         </div>
-      </div>
-      <!-- 90's buttons -->
-      <div class = "row">
-        <div class = "col-sm-6">
-            <div id = "buttons"></div>
+        <!-- artist buttons -->
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="buttons"></div>
+            </div>
+            <!-- Gif search box -->
+            <div class="col-sm-3">
+                <form id="form-box">
+                    <label for="era-input">Add your favorite artist</label><br>
+                    <input type="text" id="art-input">
+                    <input id="add-art" type="submit" value="Submit">
+                </form>
+            </div>
+            <div class="artist"></div>
+            <!-- Javascript -->
+            <script src="assets/javascript/app.js"></script>
         </div>
-        <!-- Gif search box -->
-        <div class = "col-sm-3">
-            <form id = "form-box">
-                <label for = "era-input">Add to the 90's</label><br>
-                <input type = "text" id = "era-input">
-                <input id = "add-era" type = "submit" value= "Submit">
-            </form>
-        </div>
-        <div class = "90s"></div>
-        <!-- Javascript -->
-        <script type = "text/javascript" src = "assets/javascript/app.js"></script>
-    </div>
 </body>
+
 </html>
