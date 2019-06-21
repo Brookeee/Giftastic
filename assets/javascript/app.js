@@ -1,73 +1,86 @@
 $(document).ready(function() {
-    var topics = ["Nipsey Hussle", "Beyonce", "Drake"];
+  var artists = ["Nipsey Hussle", "Beyonce", "John Legend", "Eminem", "Jay-Z"];
 
-// Giphy subject buttons. **FIXED**
-function createBtns() {
+  // Giphy subject buttons. **FIXED**
+  function createBtns(artist, classtoAdd, areaToAddTo) {
+    $(areaToAddTo).empty();
 
-    $("#buttons").empty();
-    for (var i = 0; i < topics.length; i++) {
-        var b = $("<button>");
-        b.addClass("topic");
-        b.attr("data-name", topics[i]);
-        b.text(topics[i]);
-        $("#buttons").append(b);
+    for (var i = 0; i < artists.length; i++) {
+      var b = $("<button>");
+      b.addClass(classtoAdd);
+      b.attr("data-type", artists[i]);
+      b.text(artists[i]);
+      $(areaToAddTo).append(b);
     }
-}
-    createBtns();
-// to add new button via input field
-    $("#add-era").on("click", function(){
+  }
+  // createBtns();
+  // to add new button via input field
+  $(document).on("click", "#buttons", function() {
+    $("#art-input").empty();
+    var newType = $(this).data("artist");
+    // var userEntry = $("#art-input").val();
 
-        var newEra = $("#era-input").val().trim();
-        topics.push(newEra);
-        createBtns();
-    // function to display gifs **not working?? change to http, check API key*
-    function showGifs() {
-        
-        var second = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + second + "&limit=5&api_key=exOswkiLF8WPK8waIHmRr9HEwBjHNnkm";
+    var queryURL =
+      "http://api.giphy.com/v1/gifs/search?q=" +
+      newType +
+      "&api_key=tTETWxWCFtCap8A1x6SGveywbQDU1xkJ&limit=10";
 
-        // ajax call
-        $.ajax ({
-            url: queryURL,
-            method: "GET"
-        })
-        .then (function (response){
-            console.log(response.data);
+    // ajax call
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).done(function(response) {
+      var results = response.data;
+      console.log(response);
 
-            var results = response.data;
-            for (var i = 0; i < results.length; i++) {
-                var newDiv = $("<div>");
-                var goGif = $("<img>");
-                goGif.attr('src', results[i].images.fixed_width_url);
-                goGif.attr("data-animate", results[i].images.fixed_width.url);
-                
+      for (var i = 0; i < results.length; i++) {
+        var newDiv = $('<div class="new-artist">');
 
-                // rating p tag 
-                var gifRating = $("<p>")
+        var rating = results[i].rating;
 
-                gifRating.text("Rated: PG-13 " + results[i].gifRating);
+        var p = $("<p>").text("Rating: " + rating);
 
-                console.log(gifRating);
+        var animate = results[i].images.fixed_height.url;
+        var still = results[i].images.fixed_height_still.url;
 
-                newDiv.prepend(goGif, gifRating);
-                $("#90s").prepend(newDiv);
-                console.log(response);
-            }
-            // Function to change gif image state still/animate
-            // function changeImg(){
-            //     var imageStill = $(this).attr("data-still");
-            //     var animateImg = $(this).attr("data-animate");
-            //     var imgState = $(this).attr("data-state");
+        var artistImg = $("<img>");
+        artistImg.attr("src", still);
+        artistImg.attr("data-still", still);
+        artistImg.attr("data-animate", animate);
+        artistImg.attr("data-state", "still");
+        artistImg.addClass("artist-images");
 
-            //     if (state == "still"){
+        newDiv.append(p);
+        newDiv.append(artistImg);
 
-            //     }
-            // }
-        
-        });
+        $("#artist").append(newDiv);
+      }
+    });
+  });
+  $(document).on("click", ".artist-image", function() {
+    var state = $(this).attr("data-state");
+
+    if (state === "still") {
+      $(this).attr("src", $(this).attr("data-animate"));
+      $(this).attr("data-state", "animate");
+    } else {
+      $(this).attr("src", $(this).attr("data-still"));
+      $(this).attr("data-state", "still");
+    }
+  });
+
+  $("#add-art").on("click", function(event) {
+    event.preventDefault();
+    var newArtist = $("input")
+      .eq(0)
+      .val();
+
+    if (newArtist.length > 2) {
+      artists.push(newArtist);
     }
 
-    // call to function to show gifs
-    showGifs();
-});
+    createBtns(artists, "artist-button", "#buttons");
+  });
+
+  createBtns(artists, "artist-button", "#buttons");
 });
